@@ -1,0 +1,6 @@
+touch text.log
+chmod a+rw text.log
+sudo docker run -v "/home/mk/mooc/docker/part1/Exercise_1.9/text.log:/usr/src/app/text.log:rw" devopsdockeruh/simple-web-service
+sudo docker run -it  --mount type=bind,source=/home/mk/mooc/docker/part1/Exercise_1.9/text.log,target=/usr/src/app/text.log:rw devopsdockeruh/simple-web-service
+Doesn't work in Fedora...
+
