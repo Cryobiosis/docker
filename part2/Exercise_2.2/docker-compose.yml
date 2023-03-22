@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+    simple-web-service2.2:
+      image: devopsdockeruh/simple-web-service
+      build: 
+        context: .
+      command:
+        - server
+      #volumes:
+      #  - data:/usr/src/app/
+      ports:
+        - "8080:8080"
+      #environment:
+      #  PORT: "8080"
+      #  REQUEST_ORIGIN: "http://localhost:5000"
+      expose:
+        - "8080"
+      container_name: simple-web-service2.2
+#volumes:
+#  data:
+#   name: "web-data"
