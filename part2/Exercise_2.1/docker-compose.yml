@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+    simple-web-service2:
+      image: devopsdockeruh/simple-web-service
+      build: .
+      volumes:
+        - data:/usr/src/app/
+      container_name: simple-web-service2
+volumes:
+  data:
+   name: "web-data"
