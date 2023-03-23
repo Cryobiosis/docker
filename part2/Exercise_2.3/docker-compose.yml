@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+    web-backend:
+      container_name: web-backend
+      image: web-backend
+      build: ../../part1/Exercise_1.13/
+      ports:
+        - "8000:8000"
+      environment:
+        PORT: 8000
+        REQUEST_ORIGIN: "http://localhost:5000"
+      expose:
+        - 8000
+    web-frontend:
+      container_name: web-frontend
+      image: web-frontend
+      build: ../../part1/Exercise_1.12/ 
+      #command:
+      #  - /usr/local/bin/serve -s -l 5000 build
+      ports:
+        - "5000:5000"
+      expose:
+        - "5000"
+      environment:
+        REACT_APP_BACKEND_URL: http://localhost:8000
+        #PORT: 5000
