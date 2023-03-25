@@ -1,0 +1,4 @@
+sudo docker-compose up --scale compute=10
+# NOTE: This doesn't work in Fedora
+# https://stackoverflow.com/questions/67772370/docker-nginx-problem-when-using-docker-compose-share-your-docker-host-socket-w
+    

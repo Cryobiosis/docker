@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+    web-backend:
+      container_name: web-backend
+      image: web-backend
+      build: ../../part1/Exercise_1.13/
+      ports:
+        - "8000:8000"
+      #env_file:
+      #  - .env
+      environment:
+        PORT: 8000
+        REDIS_HOST: web-redis
+        REQUEST_ORIGIN: "http://localhost:5000"
+        POSTGRES_HOST: web-db
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: Firmly3ought7pawn
+        POSTGRES_DATABASE: postgres
+      expose:
+        - 8000
+    web-redis:
+      container_name: web-redis
+      image: redis:latest
+    web-frontend:
+      container_name: web-frontend
+      image: web-frontend
+      build: ../../part1/Exercise_1.12/ 
+      #command:
+      #  - /usr/local/bin/serve -s -l 5000 build
+      ports:
+        - "5000:5000"
+      expose:
+        - "5000"
+      environment:
+        REACT_APP_BACKEND_URL: http://localhost:8000
+        #PORT: 5000
+    web-db:
+      container_name: web-db
+      image: postgres:latest
+      restart: unless-stopped
+      volumes:
+        # NOTE: Bind mount doesn't currently work in Fedora 37?
+        #- type: bind
+        #  source: ./static
+        #  target: /var/lib/postgresql/data
+        - web-db-pgsql:/var/lib/postgresql/data
+      environment:
+        POSTGRES_PASSWORD: Firmly3ought7pawn
+volumes:
+  web-db-pgsql:
+    name: "web-db-pgsql"
